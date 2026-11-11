@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Master Preparation Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar for better dark mode aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+        
+        /* Smooth transitions */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans min-h-screen selection:bg-indigo-500 selection:text-white">
+
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        
+        <!-- Header & Progress -->
+        <header class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-4">
+                DSA Master Preparation Guide
+            </h1>
+            
+            <div class="bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-700">
+                <div class="flex justify-between items-center mb-2">
+                    <h2 class="text-lg font-semibold text-gray-200">Overall Progress</h2>
+                    <span id="progress-text" class="text-indigo-400 font-bold">0 / 0 (0%)</span>
+                </div>
+                <div class="w-full bg-gray-700 rounded-full h-3">
+                    <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="mb-6 flex overflow-x-auto pb-2 space-x-2 scrollbar-hide" id="category-tabs">
+            <!-- Tabs generated via JS -->
+        </nav>
+
+        <!-- Main Content (Table) -->
+        <main class="bg-gray-800 rounded-2xl shadow-xl border border-gray-700 overflow-hidden relative min-h-[500px]">
+            <!-- Category Progress -->
+            <div class="p-5 border-b border-gray-700 bg-gray-900/40 flex flex-col md:flex-row justify-between items-center gap-4">
+                <h3 id="category-title" class="text-xl font-bold text-gray-200 tracking-wide">Category</h3>
+                <div class="flex items-center space-x-4 w-full md:w-1/2">
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                        <div id="category-progress-bar" class="bg-gradient-to-r from-blue-400 to-indigo-500 h-2 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+                    </div>
+                    <span id="category-progress-text" class="text-sm text-blue-400 font-bold whitespace-nowrap">0 / 0 (0%)</span>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse whitespace-nowrap md:whitespace-normal">
+                    <thead>
+                        <tr class="bg-gray-900/50 text-gray-400 text-sm uppercase tracking-wider border-b border-gray-700">
+                            <th class="px-6 py-4 font-medium text-center w-16">Done</th>
+                            <th class="px-6 py-4 font-medium w-16">#</th>
+                            <th class="px-6 py-4 font-medium">Problem Title</th>
+                            <th class="px-6 py-4 font-medium w-32">Difficulty</th>
+                            <th class="px-6 py-4 font-medium hidden md:table-cell">Key Algorithm(s) / Pattern(s)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body" class="divide-y divide-gray-700 text-gray-200 fade-in">
+                        <!-- Rows generated via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        
+        <footer class="mt-8 text-center text-gray-500 text-sm">
+            Progress is automatically saved to your browser.
+        </footer>
+    </div>
+
+    <script>
+        // Data Source
+        const dsaData = {
+            "Arrays & Matrices": [
+                { num: 1, title: "Two Sum", diff: "Easy", pattern: "Hash Map" },
+                { num: 2, title: "Best Time to Buy and Sell Stock", diff: "Easy", pattern: "Greedy / Array" },
+                { num: 3, title: "Move Zeroes", diff: "Easy", pattern: "Two Pointers" },
+                { num: 4, title: "Height Checker", diff: "Easy", pattern: "Sorting / Counting Sort" },
+                { num: 5, title: "Find Pivot Index", diff: "Easy", pattern: "Prefix Sum" },
+                { num: 6, title: "Merge Sorted Array", diff: "Easy", pattern: "Two Pointers" },
+                { num: 7, title: "Maximum Product of Three Numbers", diff: "Easy", pattern: "Math / Sorting" },
+                { num: 8, title: "Minimum Size Subarray Sum", diff: "Medium", pattern: "Sliding Window" },
+                { num: 9, title: "Container With Most Water", diff: "Medium", pattern: "Two Pointers" },
+                { num: 10, title: "Best Time to Buy and Sell Stock II", diff: "Medium", pattern: "Greedy" },
+                { num: 11, title: "Subarray Sum Equals K", diff: "Medium", pattern: "Prefix Sum / Hash Map" },
+                { num: 12, title: "Merge Intervals", diff: "Medium", pattern: "Sorting" },
+                { num: 13, title: "K-diff Pairs in an Array", diff: "Medium", pattern: "Hash Map / Two Pointers" },
+                { num: 14, title: "Product of Array Except Self", diff: "Medium", pattern: "Prefix & Suffix Arrays" },
+                { num: 15, title: "Find Minimum in Rotated Sorted Array", diff: "Medium", pattern: "Binary Search" },
+                { num: 16, title: "Search in Rotated Sorted Array", diff: "Medium", pattern: "Binary Search" },
+                { num: 17, title: "Maximum Subarray", diff: "Medium", pattern: "Kadane's Algorithm" },
+                { num: 18, title: "Spiral Matrix", diff: "Medium", pattern: "Matrix Traversal" },
+                { num: 19, title: "Kth Largest Element", diff: "Medium", pattern: "Quickselect / Heap" },
+                { num: 20, title: "Search a 2D Matrix II", diff: "Medium", pattern: "Binary Search / Matrix" },
+                { num: 21, title: "Count Number of Teams", diff: "Medium", pattern: "DP / Array" },
+                { num: 22, title: "3Sum", diff: "Medium", pattern: "Two Pointers / Sorting" },
+                { num: 23, title: "Two Sum II - Input array is sorted", diff: "Medium", pattern: "Two Pointers" },
+                { num: 24, title: "3Sum Closest", diff: "Medium", pattern: "Two Pointers" },
+                { num: 25, title: "Rotate Array", diff: "Medium", pattern: "Math / Reversal" },
+                { num: 26, title: "Insert Delete GetRandom O(1)", diff: "Medium", pattern: "Hash Map + Dynamic Array" },
+                { num: 27, title: "Trapping Rainwater", diff: "Hard", pattern: "Two Pointers / Monotonic Stack" },
+                { num: 28, title: "Median of Two Sorted Arrays", diff: "Hard", pattern: "Binary Search" },
+                { num: 29, title: "Shortest Subarray with Sum at Least K", diff: "Hard", pattern: "Sliding Window / Deque" },
+                { num: 30, title: "The Skyline Problem", diff: "Hard", pattern: "Line Sweep / Heap" },
+                { num: 31, title: "Subarrays with K Different Integers", diff: "Hard", pattern: "Sliding Window" }
+            ],
+            "Strings": [
+                { num: 1, title: "First Unique Character in a String", diff: "Easy", pattern: "Hash Map / Counting" },
+                { num: 2, title: "Reverse String", diff: "Easy", pattern: "Two Pointers" },
+                { num: 3, title: "Valid Anagram", diff: "Easy", pattern: "Hash Map / Counting" },
+                { num: 4, title: "DI String Match", diff: "Easy", pattern: "Greedy / Math" },
+                { num: 5, title: "Roman to Integer", diff: "Easy", pattern: "Hash Map" },
+                { num: 6, title: "Valid Parentheses", diff: "Easy", pattern: "Stack" },
+                { num: 7, title: "Perform String Shifts", diff: "Easy", pattern: "String / Math" },
+                { num: 8, title: "Longest Substring Without Repeating Characters", diff: "Medium", pattern: "Sliding Window" },
+                { num: 9, title: "Find All Anagrams in a String", diff: "Medium", pattern: "Sliding Window" },
+                { num: 10, title: "String Compression", diff: "Medium", pattern: "Two Pointers" },
+                { num: 11, title: "Remove Comments", diff: "Medium", pattern: "String Parsing" },
+                { num: 12, title: "String to Integer (atoi)", diff: "Medium", pattern: "Parsing / Math" },
+                { num: 13, title: "Palindromic Substrings", diff: "Medium", pattern: "Expand Around Center / DP" },
+                { num: 14, title: "Remove All Adjacent Duplicates in String II", diff: "Medium", pattern: "Stack" },
+                { num: 15, title: "Daily Temperatures", diff: "Medium", pattern: "Monotonic Stack" },
+                { num: 16, title: "Letter Combinations of a Phone Number", diff: "Medium", pattern: "Backtracking / DFS" },
+                { num: 17, title: "Longest Word in Dictionary through Deleting", diff: "Medium", pattern: "Two Pointers" },
+                { num: 18, title: "Minimum Window Substring", diff: "Hard", pattern: "Sliding Window" },
+                { num: 19, title: "Last Substring in Lexicographical Order", diff: "Hard", pattern: "Two Pointers" },
+                { num: 20, title: "Wildcard Matching", diff: "Hard", pattern: "Dynamic Programming / Greedy" },
+                { num: 21, title: "Longest Word in Dictionary", diff: "Medium", pattern: "Trie / Hash Map" }
+            ],
+            "Linked Lists": [
+                { num: 1, title: "Linked List Cycle", diff: "Easy", pattern: "Fast & Slow Pointers" },
+                { num: 2, title: "Reverse Linked List", diff: "Easy", pattern: "Pointer Manipulation" },
+                { num: 3, title: "Delete Node in a Linked List", diff: "Easy", pattern: "Pointer Manipulation" },
+                { num: 4, title: "Middle of the Linked List", diff: "Easy", pattern: "Fast & Slow Pointers" },
+                { num: 5, title: "Add Two Numbers II", diff: "Medium", pattern: "Stack / Linked List Reversal" },
+                { num: 6, title: "Remove Nth Node From End of List", diff: "Medium", pattern: "Fast & Slow Pointers" },
+                { num: 7, title: "Merge k Sorted Lists", diff: "Hard", pattern: "Divide & Conquer / Priority Queue" }
+            ],
+            "Trees & Graphs": [
+                { num: 1, title: "Maximum Depth of Binary Tree", diff: "Easy", pattern: "DFS / BFS" },
+                { num: 2, title: "Cousins in Binary Tree", diff: "Easy", pattern: "BFS / DFS" },
+                { num: 3, title: "Number of Islands", diff: "Medium", pattern: "DFS / BFS / Union Find" },
+                { num: 4, title: "Friend Circles", diff: "Medium", pattern: "DFS / Union Find" },
+                { num: 5, title: "Validate Binary Search Tree", diff: "Medium", pattern: "DFS / Inorder Traversal" },
+                { num: 6, title: "Recover Binary Search Tree", diff: "Medium", pattern: "DFS / Morris Traversal" },
+                { num: 7, title: "Path with Maximum Gold", diff: "Medium", pattern: "Backtracking / DFS" },
+                { num: 8, title: "Course Schedule", diff: "Medium", pattern: "Topological Sort / Graph" },
+                { num: 9, title: "Meeting Rooms II", diff: "Medium", pattern: "Sorting / Priority Queue (Line Sweep)" },
+                { num: 10, title: "K Closest Points to Origin", diff: "Medium", pattern: "Heap / Quickselect" },
+                { num: 11, title: "Reconstruct Itinerary", diff: "Hard", pattern: "Eulerian Path / DFS" },
+                { num: 12, title: "Shortest Distance from All Buildings", diff: "Hard", pattern: "BFS" }
+            ],
+            "Dynamic Programming (DP)": [
+                { num: 1, title: "Climbing Stairs", diff: "Easy", pattern: "Fibonacci / 1D DP" },
+                { num: 2, title: "Minimum Path Sum", diff: "Medium", pattern: "2D Grid DP" },
+                { num: 3, title: "Coin Change", diff: "Medium", pattern: "Knapsack DP" },
+                { num: 4, title: "Decode Ways", diff: "Medium", pattern: "1D DP" },
+                { num: 5, title: "Minimum Falling Path Sum", diff: "Medium", pattern: "2D Grid DP" },
+                { num: 6, title: "Unique Paths", diff: "Medium", pattern: "2D Grid DP / Combinatorics" },
+                { num: 7, title: "Unique Paths II", diff: "Medium", pattern: "2D Grid DP" },
+                { num: 8, title: "Triangle", diff: "Medium", pattern: "2D DP" },
+                { num: 9, title: "House Robber", diff: "Medium", pattern: "1D DP" },
+                { num: 10, title: "Super Egg Drop", diff: "Hard", pattern: "DP + Binary Search" },
+                { num: 11, title: "Edit Distance", diff: "Hard", pattern: "2D String DP" }
+            ],
+            "Math, Design, & Others": [
+                { num: 1, title: "Design HashMap", diff: "Easy", pattern: "Hash Table Design" },
+                { num: 2, title: "High Five", diff: "Easy", pattern: "Hash Map + Priority Queue" },
+                { num: 3, title: "Robot Return to Origin", diff: "Easy", pattern: "Simulation / Math" },
+                { num: 4, title: "Pascal's Triangle II", diff: "Easy", pattern: "Math / Combinatorics" },
+                { num: 5, title: "Pascal's Triangle", diff: "Easy", pattern: "Math / Array" },
+                { num: 6, title: "Rectangle Overlap", diff: "Easy", pattern: "Geometry / Math" },
+                { num: 7, title: "Fraction to Recurring Decimal", diff: "Medium", pattern: "Math / Hash Map" },
+                { num: 8, title: "Count Primes", diff: "Medium", pattern: "Sieve of Eratosthenes" },
+                { num: 9, title: "Game of Life", diff: "Medium", pattern: "Matrix / State Simulation" },
+                { num: 10, title: "Knight Probability in Chessboard", diff: "Medium", pattern: "DP / Probability" },
+                { num: 11, title: "Fraction Addition and Subtraction", diff: "Medium", pattern: "Math / Parsing" },
+                { num: 12, title: "Robot Bounded In Circle", diff: "Medium", pattern: "Simulation / Math" },
+                { num: 13, title: "LRU Cache", diff: "Medium", pattern: "Hash Map + Doubly Linked List" },
+                { num: 14, title: "Pairs of Songs with Total Durations Divisible by 60", diff: "Medium", pattern: "Hash Map / Math" },
+                { num: 15, title: "Min Stack", diff: "Medium", pattern: "Stack Design" },
+                { num: 16, title: "Permutations", diff: "Medium", pattern: "Backtracking" },
+                { num: 17, title: "Subsets", diff: "Medium", pattern: "Backtracking" },
+                { num: 18, title: "Minimum Area Rectangle", diff: "Medium", pattern: "Hash Map / Geometry" },
+                { num: 19, title: "Pow(x, n)", diff: "Medium", pattern: "Fast Power (Math)" },
+                { num: 20, title: "Combination Sum", diff: "Medium", pattern: "Backtracking" },
+                { num: 21, title: "Top K Frequent Elements", diff: "Medium", pattern: "Heap / Bucket Sort" },
+                { num: 22, title: "Corporate Flight Bookings", diff: "Medium", pattern: "Prefix Sum / Sweep Line" },
+                { num: 23, title: "Print Zero Even Odd", diff: "Medium", pattern: "Concurrency" },
+                { num: 24, title: "Reaching Points", diff: "Hard", pattern: "Math / Modulo" },
+                { num: 25, title: "LFU Cache", diff: "Hard", pattern: "Hash Map + Doubly Linked List Design" },
+                { num: 26, title: "Find Median from Data Stream", diff: "Hard", pattern: "Two Heaps" },
+                { num: 27, title: "Design In-Memory File System", diff: "Hard", pattern: "Trie / OOP Design" },
+                { num: 28, title: "Power of Three", diff: "Easy", pattern: "Math" }
+            ]
+        };
+
+        // State
+        let activeCategory = Object.keys(dsaData)[0];
+        let savedProgress = JSON.parse(localStorage.getItem('dsaProgress')) || {};
+        let totalProblems = 0;
+        
+        // Calculate Total
+        for (const cat in dsaData) {
+            totalProblems += dsaData[cat].length;
+        }
+
+        // Difficulty Badge Styles
+        const badgeColors = {
+            "Easy": "bg-green-500/10 text-green-400 border-green-500/20",
+            "Medium": "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
+            "Hard": "bg-red-500/10 text-red-400 border-red-500/20"
+        };
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTabs();
+            renderTable(activeCategory);
+            updateProgress();
+        });
+
+        function renderTabs() {
+            const tabsContainer = document.getElementById('category-tabs');
+            tabsContainer.innerHTML = '';
+
+            Object.keys(dsaData).forEach(cat => {
+                const btn = document.createElement('button');
+                const isActive = cat === activeCategory;
+                
+                btn.className = `whitespace-nowrap px-4 py-2.5 rounded-xl font-medium transition-all duration-200 text-sm ${
+                    isActive 
+                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-900/50' 
+                    : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-200'
+                }`;
+                btn.textContent = cat;
+                
+                btn.onclick = () => {
+                    activeCategory = cat;
+                    renderTabs();
+                    renderTable(activeCategory);
+                    updateProgress();
+                };
+                
+                tabsContainer.appendChild(btn);
+            });
+        }
+
+        function renderTable(category) {
+            const tbody = document.getElementById('table-body');
+            
+            // Trigger animation restart
+            tbody.classList.remove('fade-in');
+            void tbody.offsetWidth; // trigger reflow
+            tbody.classList.add('fade-in');
+
+            tbody.innerHTML = '';
+
+            dsaData[category].forEach(prob => {
+                const id = `${category.replace(/[^a-zA-Z0-9]/g, '')}_${prob.num}`;
+                const isChecked = savedProgress[id] || false;
+                const badgeClass = badgeColors[prob.diff] || 'bg-gray-700 text-gray-300';
+                
+                // Generate LeetCode URL slug from the title
+                const slug = prob.title
+                    .toLowerCase()
+                    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+                    .replace(/\s+/g, '-')         // Replace spaces with hyphens
+                    .replace(/-+/g, '-');         // Remove duplicate hyphens
+
+                const tr = document.createElement('tr');
+                tr.className = `hover:bg-gray-750/50 transition-colors group ${isChecked ? 'bg-indigo-900/10' : ''}`;
+                tr.id = `row_${id}`;
+
+                tr.innerHTML = `
+                    <td class="px-6 py-4 text-center">
+                        <label class="flex items-center justify-center cursor-pointer">
+                            <input type="checkbox" 
+                                   id="chk_${id}" 
+                                   class="w-5 h-5 rounded border-gray-600 bg-gray-700 text-indigo-500 focus:ring-indigo-500 focus:ring-offset-gray-900 cursor-pointer transition-transform group-hover:scale-110"
+                                   ${isChecked ? 'checked' : ''}
+                                   onchange="toggleDone('${id}', this.checked)">
+                        </label>
+                    </td>
+                    <td class="px-6 py-4 text-gray-400 font-mono text-sm">${prob.num}</td>
+                    <td class="px-6 py-4">
+                        <a href="https://leetcode.com/problems/${slug}/" target="_blank" rel="noopener noreferrer" id="title_${id}" class="font-medium transition-all ${isChecked ? 'line-through text-gray-500' : 'text-blue-400 hover:text-blue-300 hover:underline'}">
+                            ${prob.title}
+                        </a>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="px-2.5 py-1 text-xs font-semibold rounded-md border ${badgeClass}">
+                            ${prob.diff}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-400 hidden md:table-cell">
+                        ${prob.pattern}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function toggleDone(id, isChecked) {
+            // Update local state
+            if (isChecked) {
+                savedProgress[id] = true;
+            } else {
+                delete savedProgress[id];
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('dsaProgress', JSON.stringify(savedProgress));
+            
+            // Update visuals for specific row
+            const titleSpan = document.getElementById(`title_${id}`);
+            const row = document.getElementById(`row_${id}`);
+            
+            if (isChecked) {
+                titleSpan.classList.add('line-through', 'text-gray-500');
+                titleSpan.classList.remove('text-blue-400', 'hover:text-blue-300', 'hover:underline');
+                row.classList.add('bg-indigo-900/10');
+            } else {
+                titleSpan.classList.remove('line-through', 'text-gray-500');
+                titleSpan.classList.add('text-blue-400', 'hover:text-blue-300', 'hover:underline');
+                row.classList.remove('bg-indigo-900/10');
+            }
+
+            // Update overall and category progress
+            updateProgress();
+        }
+
+        function updateProgress() {
+            // Global Progress
+            const completed = Object.keys(savedProgress).length;
+            const percentage = Math.round((completed / totalProblems) * 100) || 0;
+            
+            document.getElementById('progress-text').textContent = `${completed} / ${totalProblems} (${percentage}%)`;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+
+            // Category Progress
+            if (activeCategory) {
+                const catProblems = dsaData[activeCategory];
+                const catTotal = catProblems.length;
+                let catCompleted = 0;
+                
+                catProblems.forEach(prob => {
+                    const id = `${activeCategory.replace(/[^a-zA-Z0-9]/g, '')}_${prob.num}`;
+                    if (savedProgress[id]) {
+                        catCompleted++;
+                    }
+                });
+                
+                const catPercentage = Math.round((catCompleted / catTotal) * 100) || 0;
+                document.getElementById('category-title').textContent = activeCategory;
+                document.getElementById('category-progress-text').textContent = `${catCompleted} / ${catTotal} (${catPercentage}%)`;
+                document.getElementById('category-progress-bar').style.width = `${catPercentage}%`;
+            }
+        }
+    </script>
+</body>
+</html>
