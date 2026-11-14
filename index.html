@@ -6,7 +6,7 @@
     <title>DSA Master Preparation Guide</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-2">
                         <span>Curated Interview Roadmap</span>
                         <span>•</span>
-                        <span id="total-count-badge">122 Problems</span>
+                        <span id="total-count-badge">128 Problems</span>
                     </div>
                     <h1 class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 tracking-tight">
                         DSA Master Preparation Guide
@@ -76,11 +76,11 @@
 
                 <!-- Action Buttons -->
                 <div class="flex items-center gap-2.5 self-start sm:self-auto">
-                    <button id="sort-toggle-btn" onclick="toggleSortOrder()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700 text-xs font-medium transition-all shadow-sm" title="Switch between Difficulty Sorting and Original List Order">
+                    <button id="sort-toggle-btn" onclick="toggleSortOrder()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700 text-xs font-medium transition-all shadow-sm" title="Switch between Difficulty Sorting and Default Order">
                         <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"></path>
                         </svg>
-                        <span id="sort-toggle-label">Sorted: Difficulty</span>
+                        <span id="sort-toggle-label">Sort: Difficulty</span>
                     </button>
                     <button onclick="openResetModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gray-800 hover:bg-red-950/60 text-gray-400 hover:text-red-400 border border-gray-700 hover:border-red-800/60 text-xs font-medium transition-all shadow-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,17 +100,17 @@
                         <div class="flex justify-between items-baseline mb-2">
                             <div>
                                 <h2 class="text-base font-semibold text-gray-200">Overall Progress</h2>
-                                <p class="text-xs text-gray-400" id="imp-progress-text">0 / 0 ⭐ Important solved</p>
+                                <p class="text-xs text-gray-400 mt-0.5" id="imp-progress-text">0 / 0 ⭐ Imp solved</p>
                             </div>
-                            <span id="progress-text" class="text-indigo-400 font-bold font-mono text-lg">0 / 122 (0%)</span>
+                            <span id="progress-text" class="text-indigo-400 font-bold font-mono text-lg">0 / 128 (0%)</span>
                         </div>
                         <div class="w-full bg-gray-700/80 rounded-full h-3.5 overflow-hidden p-0.5 border border-gray-600/40">
                             <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
                         </div>
                     </div>
 
-                    <!-- Difficulty Breakdown -->
-                    <div class="lg:col-span-7 grid grid-cols-3 gap-3 sm:gap-4 pt-4 lg:pt-0 border-t lg:border-t-0 lg:border-l border-gray-700/80 lg:pl-6">
+                    <!-- Difficulty & Imp Breakdown -->
+                    <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 lg:pt-0 border-t lg:border-t-0 lg:border-l border-gray-700/80 lg:pl-6">
                         <!-- Easy Stat -->
                         <div class="bg-gray-900/60 rounded-xl p-3 border border-gray-700/60">
                             <div class="flex justify-between items-center text-xs mb-1.5">
@@ -143,6 +143,17 @@
                                 <div id="bar-hard" class="bg-red-400 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
                             </div>
                         </div>
+
+                        <!-- Starred Imp Stat -->
+                        <div class="bg-gray-900/60 rounded-xl p-3 border border-yellow-500/20">
+                            <div class="flex justify-between items-center text-xs mb-1.5">
+                                <span class="font-semibold text-amber-400">⭐ Imp</span>
+                                <span id="stat-imp" class="font-mono text-gray-300 font-medium">0/0</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1.5">
+                                <div id="bar-imp" class="bg-amber-400 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -159,7 +170,7 @@
                 <input 
                     type="text" 
                     id="search-input" 
-                    placeholder="Search problem title or algorithm pattern (e.g. 'Sliding Window', 'Greedy', 'LC 55')..." 
+                    placeholder="Search problem title or pattern (e.g. 'Sliding Window', 'Knapsack', 'LC 34', 'LC 239')..." 
                     class="w-full bg-gray-800/90 text-gray-100 placeholder-gray-400 pl-11 pr-10 py-2.5 rounded-xl border border-gray-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-sm transition-all"
                     oninput="handleFilterChange()"
                 >
@@ -175,16 +186,16 @@
                 <!-- Difficulty Select -->
                 <select id="difficulty-filter" onchange="handleFilterChange()" class="bg-gray-800 text-gray-200 text-sm rounded-xl px-3.5 py-2.5 border border-gray-700 focus:outline-none focus:border-indigo-500 cursor-pointer">
                     <option value="All">All Difficulties</option>
-                    <option value="Easy">Easy Only</option>
-                    <option value="Medium">Medium Only</option>
-                    <option value="Hard">Hard Only</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
                 </select>
 
                 <!-- Status Select -->
                 <select id="status-filter" onchange="handleFilterChange()" class="bg-gray-800 text-gray-200 text-sm rounded-xl px-3.5 py-2.5 border border-gray-700 focus:outline-none focus:border-indigo-500 cursor-pointer">
                     <option value="All">All Status</option>
-                    <option value="Todo">Remaining</option>
-                    <option value="Done">Completed</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Pending">Pending</option>
                 </select>
 
                 <!-- Important Only Toggle -->
@@ -241,7 +252,7 @@
                     </svg>
                 </div>
                 <p class="text-gray-300 font-medium mb-1">No matching problems found</p>
-                <p class="text-gray-500 text-sm mb-4">Try clearing your search query or adjusting the difficulty filter.</p>
+                <p class="text-gray-500 text-sm mb-4">Try clearing your search query or adjusting the active filters.</p>
                 <button onclick="resetAllFilters()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition-colors">
                     Reset Filters
                 </button>
@@ -249,12 +260,12 @@
         </main>
         
         <footer class="mt-8 text-center text-gray-500 text-sm flex flex-col sm:flex-row items-center justify-between gap-2 border-t border-gray-800 pt-6">
-            <span>Progress is automatically saved to your browser's local storage.</span>
-            <span class="text-xs text-gray-600">Tip: Click any problem title to practice on LeetCode.</span>
+            <span>Progress is automatically saved to your browser's local storage (<code class="text-gray-400 font-mono text-xs">dsaProgress</code>).</span>
+            <span class="text-xs text-gray-600">Tip: Click any problem title to open it directly on LeetCode.</span>
         </footer>
     </div>
 
-    <!-- Custom Reset Confirmation Modal (No native alert/confirm) -->
+    <!-- Custom Reset Confirmation Modal (No alert/confirm) -->
     <div id="reset-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4">
         <div class="bg-gray-800 border border-gray-700 rounded-2xl max-w-md w-full p-6 shadow-2xl fade-in">
             <div class="flex items-center gap-3 text-red-400 mb-3">
@@ -266,7 +277,7 @@
                 <h3 class="text-lg font-bold text-gray-100">Reset All Progress?</h3>
             </div>
             <p class="text-sm text-gray-400 mb-6">
-                This will uncheck all completed problems across all categories. This action cannot be undone.
+                This will clear all completed checkboxes across all 8 categories. This action cannot be undone.
             </p>
             <div class="flex justify-end gap-3">
                 <button onclick="closeResetModal()" class="px-4 py-2 rounded-xl bg-gray-700 hover:bg-gray-600 text-gray-200 text-sm font-medium transition-colors">
@@ -280,7 +291,7 @@
     </div>
 
     <script>
-        // Complete Data Source including the new Greedy section
+        // Complete Data Source with 8 Categories (128 Problems)
         const dsaData = {
             "Arrays": [
                 { num: 1, title: "Two Sum", diff: "Easy", pattern: "Hash Map", slug: "two-sum" },
@@ -293,26 +304,29 @@
                 { num: 8, title: "Minimum Size Subarray Sum", diff: "Medium", pattern: "Sliding Window", slug: "minimum-size-subarray-sum", imp: true },
                 { num: 9, title: "Container With Most Water", diff: "Medium", pattern: "Two Pointers", slug: "container-with-most-water", imp: true },
                 { num: 10, title: "Best Time to Buy and Sell Stock II", diff: "Medium", pattern: "Greedy", slug: "best-time-to-buy-and-sell-stock-ii", imp: true },
-                { num: 11, title: "Subarray Sum Equals K", diff: "Medium", pattern: "Prefix Sum / Hash Map", slug: "subarray-sum-equals-k", imp: true },
-                { num: 12, title: "Merge Intervals", diff: "Medium", pattern: "Sorting", slug: "merge-intervals", imp: true },
-                { num: 13, title: "K-diff Pairs in an Array", diff: "Medium", pattern: "Hash Map / Two Pointers", slug: "k-diff-pairs-in-an-array", imp: true },
-                { num: 14, title: "Product of Array Except Self", diff: "Medium", pattern: "Prefix & Suffix Arrays", slug: "product-of-array-except-self" },
-                { num: 15, title: "Find Minimum in Rotated Sorted Array", diff: "Medium", pattern: "Binary Search", slug: "find-minimum-in-rotated-sorted-array" },
-                { num: 16, title: "Search in Rotated Sorted Array", diff: "Medium", pattern: "Binary Search", slug: "search-in-rotated-sorted-array" },
-                { num: 17, title: "Maximum Subarray", diff: "Medium", pattern: "Kadane's Algorithm", slug: "maximum-subarray" },
-                { num: 18, title: "Kth Largest Element", diff: "Medium", pattern: "Quickselect / Heap", slug: "kth-largest-element-in-an-array" },
-                { num: 19, title: "Count Number of Teams", diff: "Medium", pattern: "DP / Array", slug: "count-number-of-teams" },
-                { num: 20, title: "3Sum", diff: "Medium", pattern: "Two Pointers / Sorting", slug: "3sum" },
-                { num: 21, title: "Two Sum II - Input array is sorted", diff: "Medium", pattern: "Two Pointers", slug: "two-sum-ii-input-array-is-sorted" },
-                { num: 22, title: "3Sum Closest", diff: "Medium", pattern: "Two Pointers", slug: "3sum-closest" },
-                { num: 23, title: "Rotate Array", diff: "Medium", pattern: "Math / Reversal", slug: "rotate-array" },
-                { num: 24, title: "Insert Delete GetRandom O(1)", diff: "Medium", pattern: "Hash Map + Dynamic Array", slug: "insert-delete-getrandom-o1" },
-                { num: 25, title: "Trapping Rainwater", diff: "Hard", pattern: "Two Pointers / Monotonic Stack", slug: "trapping-rain-water", imp: true },
-                { num: 26, title: "Median of Two Sorted Arrays", diff: "Hard", pattern: "Binary Search", slug: "median-of-two-sorted-arrays", imp: true },
-                { num: 27, title: "Shortest Subarray with Sum at Least K", diff: "Hard", pattern: "Sliding Window / Deque", slug: "shortest-subarray-with-sum-at-least-k", imp: true },
-                { num: 28, title: "The Skyline Problem", diff: "Hard", pattern: "Line Sweep / Heap", slug: "the-skyline-problem" },
-                { num: 29, title: "Subarrays with K Different Integers", diff: "Hard", pattern: "Sliding Window", slug: "subarrays-with-k-different-integers" },
-                { num: 30, title: "Peak Index in a Mountain Array", diff: "Medium", pattern: "Binary Search", slug: "peak-index-in-a-mountain-array" }
+                { num: 11, title: "Subarray Sum Equals K — LC 560", diff: "Medium", pattern: "Prefix Sum / Hash Map", slug: "subarray-sum-equals-k", imp: true },
+                { num: 12, title: "Find First and Last Position of Element in Sorted Array (First / Last Index Occurrence) — LC 34", diff: "Medium", pattern: "Binary Search", slug: "find-first-and-last-position-of-element-in-sorted-array", imp: true },
+                { num: 13, title: "Maximum Product Subarray — LC 152", diff: "Medium", pattern: "Kadane's Algorithm / DP", slug: "maximum-product-subarray", imp: true },
+                { num: 14, title: "Merge Intervals", diff: "Medium", pattern: "Sorting", slug: "merge-intervals", imp: true },
+                { num: 15, title: "K-diff Pairs in an Array", diff: "Medium", pattern: "Hash Map / Two Pointers", slug: "k-diff-pairs-in-an-array", imp: true },
+                { num: 16, title: "Product of Array Except Self", diff: "Medium", pattern: "Prefix & Suffix Arrays", slug: "product-of-array-except-self" },
+                { num: 17, title: "Find Minimum in Rotated Sorted Array", diff: "Medium", pattern: "Binary Search", slug: "find-minimum-in-rotated-sorted-array" },
+                { num: 18, title: "Search in Rotated Sorted Array", diff: "Medium", pattern: "Binary Search", slug: "search-in-rotated-sorted-array" },
+                { num: 19, title: "Maximum Subarray", diff: "Medium", pattern: "Kadane's Algorithm", slug: "maximum-subarray" },
+                { num: 20, title: "Kth Largest Element", diff: "Medium", pattern: "Quickselect / Heap", slug: "kth-largest-element-in-an-array" },
+                { num: 21, title: "Count Number of Teams", diff: "Medium", pattern: "DP / Array", slug: "count-number-of-teams" },
+                { num: 22, title: "3Sum", diff: "Medium", pattern: "Two Pointers / Sorting", slug: "3sum" },
+                { num: 23, title: "Two Sum II - Input array is sorted", diff: "Medium", pattern: "Two Pointers", slug: "two-sum-ii-input-array-is-sorted" },
+                { num: 24, title: "3Sum Closest", diff: "Medium", pattern: "Two Pointers", slug: "3sum-closest" },
+                { num: 25, title: "Rotate Array", diff: "Medium", pattern: "Math / Reversal", slug: "rotate-array" },
+                { num: 26, title: "Insert Delete GetRandom O(1)", diff: "Medium", pattern: "Hash Map + Dynamic Array", slug: "insert-delete-getrandom-o1" },
+                { num: 27, title: "Peak Index in a Mountain Array", diff: "Medium", pattern: "Binary Search", slug: "peak-index-in-a-mountain-array" },
+                { num: 28, title: "Sliding Window Maximum (Find Maximum Element in a Slide) — LC 239", diff: "Hard", pattern: "Sliding Window / Monotonic Deque", slug: "sliding-window-maximum", imp: true },
+                { num: 29, title: "Trapping Rainwater", diff: "Hard", pattern: "Two Pointers / Monotonic Stack", slug: "trapping-rain-water", imp: true },
+                { num: 30, title: "Median of Two Sorted Arrays", diff: "Hard", pattern: "Binary Search", slug: "median-of-two-sorted-arrays", imp: true },
+                { num: 31, title: "Shortest Subarray with Sum at Least K", diff: "Hard", pattern: "Sliding Window / Deque", slug: "shortest-subarray-with-sum-at-least-k", imp: true },
+                { num: 32, title: "The Skyline Problem", diff: "Hard", pattern: "Line Sweep / Heap", slug: "the-skyline-problem" },
+                { num: 33, title: "Subarrays with K Different Integers", diff: "Hard", pattern: "Sliding Window", slug: "subarrays-with-k-different-integers" }
             ],
             "Matrices": [
                 { num: 1, title: "Spiral Matrix", diff: "Medium", pattern: "Matrix Traversal", slug: "spiral-matrix" },
@@ -337,10 +351,10 @@
                 { num: 15, title: "Daily Temperatures", diff: "Medium", pattern: "Monotonic Stack", slug: "daily-temperatures" },
                 { num: 16, title: "Letter Combinations of a Phone Number", diff: "Medium", pattern: "Backtracking / DFS", slug: "letter-combinations-of-a-phone-number" },
                 { num: 17, title: "Longest Word in Dictionary through Deleting", diff: "Medium", pattern: "Two Pointers", slug: "longest-word-in-dictionary-through-deleting", imp: true },
-                { num: 18, title: "Minimum Window Substring", diff: "Hard", pattern: "Sliding Window", slug: "minimum-window-substring" },
-                { num: 19, title: "Last Substring in Lexicographical Order", diff: "Hard", pattern: "Two Pointers", slug: "last-substring-in-lexicographical-order" },
-                { num: 20, title: "Wildcard Matching", diff: "Hard", pattern: "Dynamic Programming / Greedy", slug: "wildcard-matching" },
-                { num: 21, title: "Longest Word in Dictionary", diff: "Medium", pattern: "Trie / Hash Map", slug: "longest-word-in-dictionary", imp: true }
+                { num: 18, title: "Longest Word in Dictionary", diff: "Medium", pattern: "Trie / Hash Map", slug: "longest-word-in-dictionary", imp: true },
+                { num: 19, title: "Minimum Window Substring", diff: "Hard", pattern: "Sliding Window", slug: "minimum-window-substring" },
+                { num: 20, title: "Last Substring in Lexicographical Order", diff: "Hard", pattern: "Two Pointers", slug: "last-substring-in-lexicographical-order" },
+                { num: 21, title: "Wildcard Matching", diff: "Hard", pattern: "Dynamic Programming / Greedy", slug: "wildcard-matching" }
             ],
             "Linked Lists": [
                 { num: 1, title: "Linked List Cycle", diff: "Easy", pattern: "Fast & Slow Pointers", slug: "linked-list-cycle" },
@@ -367,27 +381,30 @@
             ],
             "Dynamic Programming (DP)": [
                 { num: 1, title: "Climbing Stairs", diff: "Easy", pattern: "Fibonacci / 1D DP", slug: "climbing-stairs", imp: true },
-                { num: 2, title: "Minimum Path Sum", diff: "Medium", pattern: "2D Grid DP", slug: "minimum-path-sum", imp: true },
-                { num: 3, title: "Coin Change", diff: "Medium", pattern: "Knapsack DP", slug: "coin-change", imp: true },
-                { num: 4, title: "Decode Ways", diff: "Medium", pattern: "1D DP", slug: "decode-ways" },
-                { num: 5, title: "Minimum Falling Path Sum", diff: "Medium", pattern: "2D Grid DP", slug: "minimum-falling-path-sum" },
-                { num: 6, title: "Unique Paths", diff: "Medium", pattern: "2D Grid DP / Combinatorics", slug: "unique-paths" },
-                { num: 7, title: "Unique Paths II", diff: "Medium", pattern: "2D Grid DP", slug: "unique-paths-ii" },
-                { num: 8, title: "Triangle", diff: "Medium", pattern: "2D DP", slug: "triangle" },
-                { num: 9, title: "House Robber", diff: "Medium", pattern: "1D DP", slug: "house-robber" },
-                { num: 10, title: "Super Egg Drop", diff: "Hard", pattern: "DP + Binary Search", slug: "super-egg-drop" },
-                { num: 11, title: "Edit Distance", diff: "Hard", pattern: "2D String DP", slug: "edit-distance" },
-                { num: 12, title: "Min Cost Climbing Stairs", diff: "Easy", pattern: "1D DP", slug: "min-cost-climbing-stairs" }
+                { num: 2, title: "Min Cost Climbing Stairs", diff: "Easy", pattern: "1D DP", slug: "min-cost-climbing-stairs" },
+                { num: 3, title: "0/1 Knapsack - Maximize profit within a weight limit", diff: "Medium", pattern: "Knapsack pattern (0/1 Knapsack DP)", slug: "0-1-knapsack-problem", imp: true },
+                { num: 4, title: "Subset Sum - Can you form target sum K", diff: "Medium", pattern: "Knapsack pattern (Subset Sum DP)", slug: "subset-sum-problem", imp: true },
+                { num: 5, title: "Equal Sum Partition - Divide array into two equal-sum subsets", diff: "Medium", pattern: "Knapsack pattern (LC 416 / 0/1 Knapsack DP)", slug: "partition-equal-subset-sum", imp: true },
+                { num: 6, title: "Minimum Path Sum", diff: "Medium", pattern: "2D Grid DP", slug: "minimum-path-sum", imp: true },
+                { num: 7, title: "Coin Change", diff: "Medium", pattern: "Knapsack DP", slug: "coin-change", imp: true },
+                { num: 8, title: "Decode Ways", diff: "Medium", pattern: "1D DP", slug: "decode-ways" },
+                { num: 9, title: "Minimum Falling Path Sum", diff: "Medium", pattern: "2D Grid DP", slug: "minimum-falling-path-sum" },
+                { num: 10, title: "Unique Paths", diff: "Medium", pattern: "2D Grid DP / Combinatorics", slug: "unique-paths" },
+                { num: 11, title: "Unique Paths II", diff: "Medium", pattern: "2D Grid DP", slug: "unique-paths-ii" },
+                { num: 12, title: "Triangle", diff: "Medium", pattern: "2D DP", slug: "triangle" },
+                { num: 13, title: "House Robber", diff: "Medium", pattern: "1D DP", slug: "house-robber" },
+                { num: 14, title: "Super Egg Drop", diff: "Hard", pattern: "DP + Binary Search", slug: "super-egg-drop" },
+                { num: 15, title: "Edit Distance", diff: "Hard", pattern: "2D String DP", slug: "edit-distance" }
             ],
             "Greedy": [
-                { num: 1, title: "Activity Selection Problem", diff: "Medium", pattern: "Greedy / Interval Scheduling", slug: "activity-selection-problem", imp: true },
-                { num: 2, title: "Minimum Number of Platforms", diff: "Medium", pattern: "Greedy / Sweep Line / Two Pointers", slug: "minimum-number-of-platforms", imp: true },
-                { num: 3, title: "Jump Game — LC 55", diff: "Medium", pattern: "Greedy", slug: "jump-game", imp: true },
-                { num: 4, title: "Jump Game II — LC 45", diff: "Medium", pattern: "Greedy / BFS", slug: "jump-game-ii", imp: true },
-                { num: 5, title: "Non-overlapping Intervals — LC 435", diff: "Medium", pattern: "Greedy / Interval Sorting", slug: "non-overlapping-intervals", imp: true },
-                { num: 6, title: "Meeting Rooms II — LC 253", diff: "Medium", pattern: "Greedy / Min-Heap / Sweep Line", slug: "meeting-rooms-ii" },
-                { num: 7, title: "Gas Station — LC 134", diff: "Medium", pattern: "Greedy", slug: "gas-station" },
-                { num: 8, title: "Assign Cookies — LC 455", diff: "Easy", pattern: "Greedy / Two Pointers / Sorting", slug: "assign-cookies" },
+                { num: 1, title: "Assign Cookies — LC 455", diff: "Easy", pattern: "Greedy / Two Pointers / Sorting", slug: "assign-cookies" },
+                { num: 2, title: "Activity Selection Problem", diff: "Medium", pattern: "Greedy / Interval Scheduling", slug: "activity-selection-problem", imp: true },
+                { num: 3, title: "Minimum Number of Platforms", diff: "Medium", pattern: "Greedy / Sweep Line / Two Pointers", slug: "minimum-number-of-platforms", imp: true },
+                { num: 4, title: "Jump Game — LC 55", diff: "Medium", pattern: "Greedy", slug: "jump-game", imp: true },
+                { num: 5, title: "Jump Game II — LC 45", diff: "Medium", pattern: "Greedy / BFS", slug: "jump-game-ii", imp: true },
+                { num: 6, title: "Non-overlapping Intervals — LC 435", diff: "Medium", pattern: "Greedy / Interval Sorting", slug: "non-overlapping-intervals", imp: true },
+                { num: 7, title: "Meeting Rooms II — LC 253", diff: "Medium", pattern: "Greedy / Min-Heap / Sweep Line", slug: "meeting-rooms-ii" },
+                { num: 8, title: "Gas Station — LC 134", diff: "Medium", pattern: "Greedy", slug: "gas-station" },
                 { num: 9, title: "Boats to Save People — LC 881", diff: "Medium", pattern: "Greedy / Two Pointers / Sorting", slug: "boats-to-save-people" },
                 { num: 10, title: "Minimum-Cost Pairing With Category Constraints", diff: "Hard", pattern: "Greedy / Sorting / Matching", slug: "minimum-cost-pairing-with-category-constraints" }
             ],
@@ -398,27 +415,27 @@
                 { num: 4, title: "Pascal's Triangle II", diff: "Easy", pattern: "Math / Combinatorics", slug: "pascals-triangle-ii" },
                 { num: 5, title: "Pascal's Triangle", diff: "Easy", pattern: "Math / Array", slug: "pascals-triangle" },
                 { num: 6, title: "Rectangle Overlap", diff: "Easy", pattern: "Geometry / Math", slug: "rectangle-overlap" },
-                { num: 7, title: "Fraction to Recurring Decimal", diff: "Medium", pattern: "Math / Hash Map", slug: "fraction-to-recurring-decimal", imp: true },
-                { num: 8, title: "Count Primes", diff: "Medium", pattern: "Sieve of Eratosthenes", slug: "count-primes", imp: true },
-                { num: 9, title: "Knight Probability in Chessboard", diff: "Medium", pattern: "DP / Probability", slug: "knight-probability-in-chessboard" },
-                { num: 10, title: "Fraction Addition and Subtraction", diff: "Medium", pattern: "Math / Parsing", slug: "fraction-addition-and-subtraction" },
-                { num: 11, title: "Robot Bounded In Circle", diff: "Medium", pattern: "Simulation / Math", slug: "robot-bounded-in-circle" },
-                { num: 12, title: "LRU Cache", diff: "Medium", pattern: "Hash Map + Doubly Linked List", slug: "lru-cache" },
-                { num: 13, title: "Pairs of Songs with Total Durations Divisible by 60", diff: "Medium", pattern: "Hash Map / Math", slug: "pairs-of-songs-with-total-durations-divisible-by-60" },
-                { num: 14, title: "Min Stack", diff: "Medium", pattern: "Stack Design", slug: "min-stack" },
-                { num: 15, title: "Permutations", diff: "Medium", pattern: "Backtracking", slug: "permutations" },
-                { num: 16, title: "Subsets", diff: "Medium", pattern: "Backtracking", slug: "subsets" },
-                { num: 17, title: "Minimum Area Rectangle", diff: "Medium", pattern: "Hash Map / Geometry", slug: "minimum-area-rectangle" },
-                { num: 18, title: "Pow(x, n)", diff: "Medium", pattern: "Fast Power (Math)", slug: "powx-n" },
-                { num: 19, title: "Combination Sum", diff: "Medium", pattern: "Backtracking", slug: "combination-sum" },
-                { num: 20, title: "Top K Frequent Elements", diff: "Medium", pattern: "Heap / Bucket Sort", slug: "top-k-frequent-elements" },
-                { num: 21, title: "Corporate Flight Bookings", diff: "Medium", pattern: "Prefix Sum / Sweep Line", slug: "corporate-flight-bookings" },
-                { num: 22, title: "Print Zero Even Odd", diff: "Medium", pattern: "Concurrency", slug: "print-zero-even-odd" },
-                { num: 23, title: "Reaching Points", diff: "Hard", pattern: "Math / Modulo", slug: "reaching-points" },
-                { num: 24, title: "LFU Cache", diff: "Hard", pattern: "Hash Map + Doubly Linked List Design", slug: "lfu-cache" },
-                { num: 25, title: "Find Median from Data Stream", diff: "Hard", pattern: "Two Heaps", slug: "find-median-from-data-stream" },
-                { num: 26, title: "Design In-Memory File System", diff: "Hard", pattern: "Trie / OOP Design", slug: "design-in-memory-file-system" },
-                { num: 27, title: "Power of Three", diff: "Easy", pattern: "Math", slug: "power-of-three" }
+                { num: 7, title: "Power of Three", diff: "Easy", pattern: "Math", slug: "power-of-three" },
+                { num: 8, title: "Fraction to Recurring Decimal", diff: "Medium", pattern: "Math / Hash Map", slug: "fraction-to-recurring-decimal", imp: true },
+                { num: 9, title: "Count Primes", diff: "Medium", pattern: "Sieve of Eratosthenes", slug: "count-primes", imp: true },
+                { num: 10, title: "Knight Probability in Chessboard", diff: "Medium", pattern: "DP / Probability", slug: "knight-probability-in-chessboard" },
+                { num: 11, title: "Fraction Addition and Subtraction", diff: "Medium", pattern: "Math / Parsing", slug: "fraction-addition-and-subtraction" },
+                { num: 12, title: "Robot Bounded In Circle", diff: "Medium", pattern: "Simulation / Math", slug: "robot-bounded-in-circle" },
+                { num: 13, title: "LRU Cache", diff: "Medium", pattern: "Hash Map + Doubly Linked List", slug: "lru-cache" },
+                { num: 14, title: "Pairs of Songs with Total Durations Divisible by 60", diff: "Medium", pattern: "Hash Map / Math", slug: "pairs-of-songs-with-total-durations-divisible-by-60" },
+                { num: 15, title: "Min Stack", diff: "Medium", pattern: "Stack Design", slug: "min-stack" },
+                { num: 16, title: "Permutations", diff: "Medium", pattern: "Backtracking", slug: "permutations" },
+                { num: 17, title: "Subsets", diff: "Medium", pattern: "Backtracking", slug: "subsets" },
+                { num: 18, title: "Minimum Area Rectangle", diff: "Medium", pattern: "Hash Map / Geometry", slug: "minimum-area-rectangle" },
+                { num: 19, title: "Pow(x, n)", diff: "Medium", pattern: "Fast Power (Math)", slug: "powx-n" },
+                { num: 20, title: "Combination Sum", diff: "Medium", pattern: "Backtracking", slug: "combination-sum" },
+                { num: 21, title: "Top K Frequent Elements", diff: "Medium", pattern: "Heap / Bucket Sort", slug: "top-k-frequent-elements" },
+                { num: 22, title: "Corporate Flight Bookings", diff: "Medium", pattern: "Prefix Sum / Sweep Line", slug: "corporate-flight-bookings" },
+                { num: 23, title: "Print Zero Even Odd", diff: "Medium", pattern: "Concurrency", slug: "print-zero-even-odd" },
+                { num: 24, title: "Reaching Points", diff: "Hard", pattern: "Math / Modulo", slug: "reaching-points" },
+                { num: 25, title: "LFU Cache", diff: "Hard", pattern: "Hash Map + Doubly Linked List Design", slug: "lfu-cache" },
+                { num: 26, title: "Find Median from Data Stream", diff: "Hard", pattern: "Two Heaps", slug: "find-median-from-data-stream" },
+                { num: 27, title: "Design In-Memory File System", diff: "Hard", pattern: "Trie / OOP Design", slug: "design-in-memory-file-system" }
             ]
         };
 
@@ -432,12 +449,11 @@
         // Difficulty weights for sorting
         const diffWeights = { "Easy": 1, "Medium": 2, "Hard": 3 };
 
-        // Save original order index and assign stable IDs aligned with original dsa_guide.html
+        // Preprocess Data: store default order and difficulty-sorted index
         for (const cat in dsaData) {
             dsaData[cat].forEach((prob, idx) => {
                 prob.originalOrder = idx + 1;
             });
-            // Sort by difficulty initially (to preserve exact ID mapping with existing dsaProgress)
             dsaData[cat].sort((a, b) => diffWeights[a.diff] - diffWeights[b.diff]);
             dsaData[cat].forEach((prob, index) => {
                 prob.num = index + 1;
@@ -470,7 +486,6 @@
                 const btn = document.createElement('button');
                 const isActive = cat === activeCategory;
                 
-                // Count completed in this category
                 const catProblems = dsaData[cat];
                 const doneCount = catProblems.filter(p => savedProgress[p.id]).length;
 
@@ -519,7 +534,7 @@
             // Toggle clear search button visibility
             document.getElementById('clear-search-btn').classList.toggle('hidden', searchQuery.length === 0);
 
-            // Copy and sort category items according to user's sort preference
+            // Copy and sort category items according to active sort order
             let problems = [...dsaData[category]];
             if (sortByDifficulty) {
                 problems.sort((a, b) => diffWeights[a.diff] - diffWeights[b.diff] || a.originalOrder - b.originalOrder);
@@ -535,8 +550,8 @@
                     prob.pattern.toLowerCase().includes(searchQuery);
                 const matchesDiff = diffFilter === 'All' || prob.diff === diffFilter;
                 const matchesStatus = statusFilter === 'All' || 
-                    (statusFilter === 'Done' && isChecked) || 
-                    (statusFilter === 'Todo' && !isChecked);
+                    (statusFilter === 'Completed' && isChecked) || 
+                    (statusFilter === 'Pending' && !isChecked);
                 const matchesImp = !filterImpOnly || prob.imp;
 
                 return matchesSearch && matchesDiff && matchesStatus && matchesImp;
@@ -561,7 +576,7 @@
                 emptyState.classList.remove('flex');
             }
 
-            filteredProblems.forEach((prob, idx) => {
+            filteredProblems.forEach(prob => {
                 const id = prob.id;
                 const displayNum = sortByDifficulty ? prob.num : prob.originalOrder;
                 const isChecked = savedProgress[id] || false;
@@ -667,7 +682,7 @@
             
             document.getElementById('progress-text').textContent = `${completed} / ${totalProblems} (${percentage}%)`;
             document.getElementById('progress-bar').style.width = `${percentage}%`;
-            document.getElementById('imp-progress-text').textContent = `${completedImp} / ${totalImp} ⭐ Important solved`;
+            document.getElementById('imp-progress-text').textContent = `${completedImp} / ${totalImp} ⭐ Imp solved`;
 
             // Update Difficulty Breakdown Stats
             ['Easy', 'Medium', 'Hard'].forEach(diff => {
@@ -678,6 +693,11 @@
                 document.getElementById(`stat-${key}`).textContent = `${done}/${total}`;
                 document.getElementById(`bar-${key}`).style.width = `${pct}%`;
             });
+
+            // Update Starred Imp Breakdown Stat
+            const impPct = Math.round((completedImp / totalImp) * 100) || 0;
+            document.getElementById('stat-imp').textContent = `${completedImp}/${totalImp}`;
+            document.getElementById('bar-imp').style.width = `${impPct}%`;
 
             // Update Active Category Progress
             if (activeCategory) {
@@ -722,8 +742,8 @@
         function toggleSortOrder() {
             sortByDifficulty = !sortByDifficulty;
             document.getElementById('sort-toggle-label').textContent = sortByDifficulty 
-                ? 'Sorted: Difficulty' 
-                : 'Sorted: Default Order';
+                ? 'Sort: Difficulty' 
+                : 'Sort: Default Order';
             renderTable(activeCategory);
         }
 
