@@ -67,7 +67,7 @@
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-2">
                         <span>Curated Interview Roadmap</span>
                         <span>•</span>
-                        <span id="total-count-badge">128 Problems</span>
+                        <span id="total-count-badge">112 Problems</span>
                     </div>
                     <h1 class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 tracking-tight">
                         DSA Master Preparation Guide
@@ -102,7 +102,7 @@
                                 <h2 class="text-base font-semibold text-gray-200">Overall Progress</h2>
                                 <p class="text-xs text-gray-400 mt-0.5" id="imp-progress-text">0 / 0 ⭐ Imp solved</p>
                             </div>
-                            <span id="progress-text" class="text-indigo-400 font-bold font-mono text-lg">0 / 128 (0%)</span>
+                            <span id="progress-text" class="text-indigo-400 font-bold font-mono text-lg">0 / 112 (0%)</span>
                         </div>
                         <div class="w-full bg-gray-700/80 rounded-full h-3.5 overflow-hidden p-0.5 border border-gray-600/40">
                             <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
@@ -291,42 +291,34 @@
     </div>
 
     <script>
-        // Complete Data Source with 8 Categories (128 Problems)
+        // Complete Data Source with 8 Categories (112 Problems)
         const dsaData = {
             "Arrays": [
                 { num: 1, title: "Two Sum", diff: "Easy", pattern: "Hash Map", slug: "two-sum" },
-                { num: 2, title: "Best Time to Buy and Sell Stock", diff: "Easy", pattern: "Greedy / Array", slug: "best-time-to-buy-and-sell-stock", imp: true },
-                { num: 3, title: "Move Zeroes", diff: "Easy", pattern: "Two Pointers", slug: "move-zeroes" },
-                { num: 4, title: "Height Checker", diff: "Easy", pattern: "Sorting / Counting Sort", slug: "height-checker" },
-                { num: 5, title: "Find Pivot Index", diff: "Easy", pattern: "Prefix Sum", slug: "find-pivot-index" },
-                { num: 6, title: "Merge Sorted Array", diff: "Easy", pattern: "Two Pointers", slug: "merge-sorted-array" },
-                { num: 7, title: "Maximum Product of Three Numbers", diff: "Easy", pattern: "Math / Sorting", slug: "maximum-product-of-three-numbers" },
-                { num: 8, title: "Minimum Size Subarray Sum", diff: "Medium", pattern: "Sliding Window", slug: "minimum-size-subarray-sum", imp: true },
-                { num: 9, title: "Container With Most Water", diff: "Medium", pattern: "Two Pointers", slug: "container-with-most-water", imp: true },
-                { num: 10, title: "Best Time to Buy and Sell Stock II", diff: "Medium", pattern: "Greedy", slug: "best-time-to-buy-and-sell-stock-ii", imp: true },
-                { num: 11, title: "Subarray Sum Equals K — LC 560", diff: "Medium", pattern: "Prefix Sum / Hash Map", slug: "subarray-sum-equals-k", imp: true },
-                { num: 12, title: "Find First and Last Position of Element in Sorted Array (First / Last Index Occurrence) — LC 34", diff: "Medium", pattern: "Binary Search", slug: "find-first-and-last-position-of-element-in-sorted-array", imp: true },
-                { num: 13, title: "Maximum Product Subarray — LC 152", diff: "Medium", pattern: "Kadane's Algorithm / DP", slug: "maximum-product-subarray", imp: true },
-                { num: 14, title: "Merge Intervals", diff: "Medium", pattern: "Sorting", slug: "merge-intervals", imp: true },
-                { num: 15, title: "K-diff Pairs in an Array", diff: "Medium", pattern: "Hash Map / Two Pointers", slug: "k-diff-pairs-in-an-array", imp: true },
-                { num: 16, title: "Product of Array Except Self", diff: "Medium", pattern: "Prefix & Suffix Arrays", slug: "product-of-array-except-self" },
-                { num: 17, title: "Find Minimum in Rotated Sorted Array", diff: "Medium", pattern: "Binary Search", slug: "find-minimum-in-rotated-sorted-array" },
-                { num: 18, title: "Search in Rotated Sorted Array", diff: "Medium", pattern: "Binary Search", slug: "search-in-rotated-sorted-array" },
-                { num: 19, title: "Maximum Subarray", diff: "Medium", pattern: "Kadane's Algorithm", slug: "maximum-subarray" },
-                { num: 20, title: "Kth Largest Element", diff: "Medium", pattern: "Quickselect / Heap", slug: "kth-largest-element-in-an-array" },
-                { num: 21, title: "Count Number of Teams", diff: "Medium", pattern: "DP / Array", slug: "count-number-of-teams" },
-                { num: 22, title: "3Sum", diff: "Medium", pattern: "Two Pointers / Sorting", slug: "3sum" },
-                { num: 23, title: "Two Sum II - Input array is sorted", diff: "Medium", pattern: "Two Pointers", slug: "two-sum-ii-input-array-is-sorted" },
-                { num: 24, title: "3Sum Closest", diff: "Medium", pattern: "Two Pointers", slug: "3sum-closest" },
-                { num: 25, title: "Rotate Array", diff: "Medium", pattern: "Math / Reversal", slug: "rotate-array" },
-                { num: 26, title: "Insert Delete GetRandom O(1)", diff: "Medium", pattern: "Hash Map + Dynamic Array", slug: "insert-delete-getrandom-o1" },
-                { num: 27, title: "Peak Index in a Mountain Array", diff: "Medium", pattern: "Binary Search", slug: "peak-index-in-a-mountain-array" },
-                { num: 28, title: "Sliding Window Maximum (Find Maximum Element in a Slide) — LC 239", diff: "Hard", pattern: "Sliding Window / Monotonic Deque", slug: "sliding-window-maximum", imp: true },
-                { num: 29, title: "Trapping Rainwater", diff: "Hard", pattern: "Two Pointers / Monotonic Stack", slug: "trapping-rain-water", imp: true },
-                { num: 30, title: "Median of Two Sorted Arrays", diff: "Hard", pattern: "Binary Search", slug: "median-of-two-sorted-arrays", imp: true },
-                { num: 31, title: "Shortest Subarray with Sum at Least K", diff: "Hard", pattern: "Sliding Window / Deque", slug: "shortest-subarray-with-sum-at-least-k", imp: true },
-                { num: 32, title: "The Skyline Problem", diff: "Hard", pattern: "Line Sweep / Heap", slug: "the-skyline-problem" },
-                { num: 33, title: "Subarrays with K Different Integers", diff: "Hard", pattern: "Sliding Window", slug: "subarrays-with-k-different-integers" }
+                { num: 2, title: "Move Zeroes", diff: "Easy", pattern: "Two Pointers", slug: "move-zeroes" },
+                { num: 3, title: "Height Checker", diff: "Easy", pattern: "Sorting / Counting Sort", slug: "height-checker" },
+                { num: 4, title: "Find Pivot Index", diff: "Easy", pattern: "Prefix Sum", slug: "find-pivot-index" },
+                { num: 5, title: "Merge Sorted Array", diff: "Easy", pattern: "Two Pointers", slug: "merge-sorted-array" },
+                { num: 6, title: "Maximum Product of Three Numbers", diff: "Easy", pattern: "Math / Sorting", slug: "maximum-product-of-three-numbers" },
+                { num: 7, title: "Minimum Size Subarray Sum", diff: "Medium", pattern: "Sliding Window", slug: "minimum-size-subarray-sum", imp: true },
+                { num: 8, title: "Container With Most Water", diff: "Medium", pattern: "Two Pointers", slug: "container-with-most-water", imp: true },
+                { num: 9, title: "Subarray Sum Equals K — LC 560", diff: "Medium", pattern: "Prefix Sum / Hash Map", slug: "subarray-sum-equals-k", imp: true },
+                { num: 10, title: "Find First and Last Position of Element in Sorted Array (First / Last Index Occurrence) — LC 34", diff: "Medium", pattern: "Binary Search", slug: "find-first-and-last-position-of-element-in-sorted-array", imp: true },
+                { num: 11, title: "Maximum Product Subarray — LC 152", diff: "Medium", pattern: "Kadane's Algorithm / DP", slug: "maximum-product-subarray", imp: true },
+                { num: 12, title: "Merge Intervals", diff: "Medium", pattern: "Sorting", slug: "merge-intervals", imp: true },
+                { num: 13, title: "K-diff Pairs in an Array", diff: "Medium", pattern: "Hash Map / Two Pointers", slug: "k-diff-pairs-in-an-array", imp: true },
+                { num: 14, title: "Product of Array Except Self", diff: "Medium", pattern: "Prefix & Suffix Arrays", slug: "product-of-array-except-self" },
+                { num: 15, title: "Find Minimum in Rotated Sorted Array", diff: "Medium", pattern: "Binary Search", slug: "find-minimum-in-rotated-sorted-array" },
+                { num: 16, title: "Search in Rotated Sorted Array", diff: "Medium", pattern: "Binary Search", slug: "search-in-rotated-sorted-array" },
+                { num: 17, title: "Maximum Subarray", diff: "Medium", pattern: "Kadane's Algorithm", slug: "maximum-subarray" },
+                { num: 18, title: "Kth Largest Element", diff: "Medium", pattern: "Quickselect / Heap", slug: "kth-largest-element-in-an-array" },
+                { num: 19, title: "3Sum Closest", diff: "Medium", pattern: "Two Pointers", slug: "3sum-closest" },
+                { num: 20, title: "Rotate Array", diff: "Medium", pattern: "Math / Reversal", slug: "rotate-array" },
+                { num: 21, title: "Peak Index in a Mountain Array", diff: "Medium", pattern: "Binary Search", slug: "peak-index-in-a-mountain-array" },
+                { num: 22, title: "Sliding Window Maximum (Find Maximum Element in a Slide) — LC 239", diff: "Hard", pattern: "Sliding Window / Monotonic Deque", slug: "sliding-window-maximum", imp: true },
+                { num: 23, title: "Trapping Rainwater", diff: "Hard", pattern: "Two Pointers / Monotonic Stack", slug: "trapping-rain-water", imp: true },
+                { num: 24, title: "Median of Two Sorted Arrays", diff: "Hard", pattern: "Binary Search", slug: "median-of-two-sorted-arrays", imp: true },
+                { num: 25, title: "Shortest Subarray with Sum at Least K", diff: "Hard", pattern: "Sliding Window / Deque", slug: "shortest-subarray-with-sum-at-least-k", imp: true }
             ],
             "Matrices": [
                 { num: 1, title: "Spiral Matrix", diff: "Medium", pattern: "Matrix Traversal", slug: "spiral-matrix" },
@@ -387,26 +379,18 @@
                 { num: 5, title: "Equal Sum Partition - Divide array into two equal-sum subsets", diff: "Medium", pattern: "Knapsack pattern (LC 416 / 0/1 Knapsack DP)", slug: "partition-equal-subset-sum", imp: true },
                 { num: 6, title: "Minimum Path Sum", diff: "Medium", pattern: "2D Grid DP", slug: "minimum-path-sum", imp: true },
                 { num: 7, title: "Coin Change", diff: "Medium", pattern: "Knapsack DP", slug: "coin-change", imp: true },
-                { num: 8, title: "Decode Ways", diff: "Medium", pattern: "1D DP", slug: "decode-ways" },
-                { num: 9, title: "Minimum Falling Path Sum", diff: "Medium", pattern: "2D Grid DP", slug: "minimum-falling-path-sum" },
-                { num: 10, title: "Unique Paths", diff: "Medium", pattern: "2D Grid DP / Combinatorics", slug: "unique-paths" },
-                { num: 11, title: "Unique Paths II", diff: "Medium", pattern: "2D Grid DP", slug: "unique-paths-ii" },
-                { num: 12, title: "Triangle", diff: "Medium", pattern: "2D DP", slug: "triangle" },
-                { num: 13, title: "House Robber", diff: "Medium", pattern: "1D DP", slug: "house-robber" },
-                { num: 14, title: "Super Egg Drop", diff: "Hard", pattern: "DP + Binary Search", slug: "super-egg-drop" },
-                { num: 15, title: "Edit Distance", diff: "Hard", pattern: "2D String DP", slug: "edit-distance" }
+                { num: 8, title: "Unique Paths", diff: "Medium", pattern: "2D Grid DP / Combinatorics", slug: "unique-paths" },
+                { num: 9, title: "House Robber", diff: "Medium", pattern: "1D DP", slug: "house-robber" }
             ],
             "Greedy": [
-                { num: 1, title: "Assign Cookies — LC 455", diff: "Easy", pattern: "Greedy / Two Pointers / Sorting", slug: "assign-cookies" },
-                { num: 2, title: "Activity Selection Problem", diff: "Medium", pattern: "Greedy / Interval Scheduling", slug: "activity-selection-problem", imp: true },
-                { num: 3, title: "Minimum Number of Platforms", diff: "Medium", pattern: "Greedy / Sweep Line / Two Pointers", slug: "minimum-number-of-platforms", imp: true },
-                { num: 4, title: "Jump Game — LC 55", diff: "Medium", pattern: "Greedy", slug: "jump-game", imp: true },
-                { num: 5, title: "Jump Game II — LC 45", diff: "Medium", pattern: "Greedy / BFS", slug: "jump-game-ii", imp: true },
-                { num: 6, title: "Non-overlapping Intervals — LC 435", diff: "Medium", pattern: "Greedy / Interval Sorting", slug: "non-overlapping-intervals", imp: true },
-                { num: 7, title: "Meeting Rooms II — LC 253", diff: "Medium", pattern: "Greedy / Min-Heap / Sweep Line", slug: "meeting-rooms-ii" },
-                { num: 8, title: "Gas Station — LC 134", diff: "Medium", pattern: "Greedy", slug: "gas-station" },
-                { num: 9, title: "Boats to Save People — LC 881", diff: "Medium", pattern: "Greedy / Two Pointers / Sorting", slug: "boats-to-save-people" },
-                { num: 10, title: "Minimum-Cost Pairing With Category Constraints", diff: "Hard", pattern: "Greedy / Sorting / Matching", slug: "minimum-cost-pairing-with-category-constraints" }
+                { num: 1, title: "Best Time to Buy and Sell Stock", diff: "Easy", pattern: "Greedy / Array", slug: "best-time-to-buy-and-sell-stock", imp: true },
+                { num: 2, title: "Assign Cookies — LC 455", diff: "Easy", pattern: "Greedy / Two Pointers / Sorting", slug: "assign-cookies" },
+                { num: 3, title: "Best Time to Buy and Sell Stock II", diff: "Medium", pattern: "Greedy", slug: "best-time-to-buy-and-sell-stock-ii", imp: true },
+                { num: 4, title: "Activity Selection Problem", diff: "Medium", pattern: "Greedy / Interval Scheduling", slug: "activity-selection-problem", imp: true },
+                { num: 5, title: "Minimum Number of Platforms", diff: "Medium", pattern: "Greedy / Sweep Line / Two Pointers", slug: "minimum-number-of-platforms", imp: true },
+                { num: 6, title: "Jump Game — LC 55", diff: "Medium", pattern: "Greedy", slug: "jump-game", imp: true },
+                { num: 7, title: "Jump Game II — LC 45", diff: "Medium", pattern: "Greedy / BFS", slug: "jump-game-ii", imp: true },
+                { num: 8, title: "Non-overlapping Intervals — LC 435", diff: "Medium", pattern: "Greedy / Interval Sorting", slug: "non-overlapping-intervals", imp: true }
             ],
             "Math, Design, & Others": [
                 { num: 1, title: "Design HashMap", diff: "Easy", pattern: "Hash Table Design", slug: "design-hashmap", imp: true },
